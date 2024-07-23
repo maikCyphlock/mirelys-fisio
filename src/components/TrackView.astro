@@ -1,0 +1,14 @@
+---
+import { Redis } from "@upstash/redis"
+const country  = Astro.request.headers.get('X-Vercel-IP-Country')
+const redis =  new Redis({
+    url: import.meta.env.UPSTASH_REDIS_REST_URL,
+    token: import.meta.env.UPSTASH_REDIS_REST_TOKEN
+} )
+
+const saveViewCount = async () => {
+        const count = await redis.incr(`track:${country}`)
+        console.log(count)
+}
+await saveViewCount()
+---
