@@ -8,6 +8,9 @@ const redis =  new Redis({
     token: import.meta.env.UPSTASH_REDIS_REST_TOKEN
 } )
 const saveViewCount = async () => {
+    if(process.env.NODE_ENV !== 'production'){
+        return;
+    }
     // Crear la clave para la IP
     const ipKey = 'ip:' + ip;
 
