@@ -1,0 +1,66 @@
+---
+// Component Imports
+import Button from "../components/Button.astro";
+import MassageIcon from "../components/massageIcon.astro";
+// Full Astro Component Syntax:
+// https://docs.astro.build/basics/astro-components/
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <style>
+      /* league-spartan-latin-wght-normal */
+      @font-face {
+        font-family: "League Spartan Variable";
+        font-style: normal;
+        font-display: swap;
+        font-weight: 100 900;
+        src: url(@fontsource-variable/league-spartan/files/league-spartan-latin-wght-normal.woff2)
+          format("woff2-variations");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      body {
+        font-family: "League Spartan Variable", sans-serif;
+      }
+    </style>
+    <title>Mirelys fisio</title>
+  </head>
+
+  <body>
+    <div class="container mx-2 md:mx-auto min-h-screen content-center">
+      <main class="grid grid-cols-1 md:grid-cols-2  gap-4 place-items-center max-w-4xl mx-auto mt-20">
+        <div class="flex flex-col gap-4 mb-10">
+          <MassageIcon />
+          <h1 class="text-orange-600 font-spartan text-balance text-7xl font-black ">
+            Servicios de alivio múscular y fisico
+          </h1>
+		  <h2 class="text-pretty text-3xl">por <i class="font-spartan italic"> Mirelys Aguilar</i></h2>
+        </div>
+        <div>
+			
+				<img src="spa.jpg" class="rounded-3xl shadow-2xl object-cover aspect-square " alt="">
+		
+		</div>
+      </main>
+
+	  <section class="grid grid-cols-2 md:grid-cols-4 gap-16 md:gap-2  place-items-center mt-28">
+		<img src="spa-5.jpg" class="rounded-3xl shadow-2xl z-10 -rotate-12 scale-110 transition-transform ease-in   hover:scale-125" alt="">
+		<img src="spa-2.jpg" class="rounded-3xl shadow-2xl rotate-12 scale-90 transition-transform ease-in   hover:scale-110" alt="">
+		<img src="spa-3.jpg" class="rounded-3xl shadow-2xl rotate-12 md:-rotate-12 scale-105 transition-transform ease-in   hover:scale-110" alt="">
+		<img src="spa-4.jpg" class="rounded-3xl shadow-2xl -rotate-12 md:rotate-12 transition-transform ease-in   hover:scale-125" alt="">
+	
+	  </section>
+	  <section class="grid grid-cols-1  place-items-center mt-28 mb-28">
+		<h1 class="text-6xl font-spartan  font-bold">servicio de calidad</h1>
+		<p class="text-balance text-3xl max-w-6xl mx-auto mt-4">Disfruta de un alivio muscular y físico por Mirelys Aguilar. Reserva tu cita hoy mismo</p>
+		<a href="tel:+584262499393" class="text-balance text-3xl max-w-6xl mx-auto mt-4 px-4 py-3 text-orange-600  border-[5px] border-orange-600 rounded-xl font-spartan font-bold ">Reservar</a>
+	  </section>
+    </div>
+  </body>
+</html>
