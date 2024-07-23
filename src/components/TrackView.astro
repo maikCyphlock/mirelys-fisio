@@ -1,14 +1,21 @@
 ---
 import { Redis } from "@upstash/redis"
 const country  = Astro.request.headers.get('X-Vercel-IP-Country')
+const ip = Astro.request.headers.get('x-real-ip') || Astro.request.headers.get('x-forwarded-for');
+
 const redis =  new Redis({
     url: import.meta.env.UPSTASH_REDIS_REST_URL,
     token: import.meta.env.UPSTASH_REDIS_REST_TOKEN
 } )
 
 const saveViewCount = async () => {
+       if(ip && country){
+         await redis.set('ip:' + ip, country)
+       }
+       if(ip !== await redis.get('ip:' + ip)){
         const count = await redis.incr('views:' + country)
-        console.log(count)
+       }
+      
 }
 await saveViewCount()
 ---
