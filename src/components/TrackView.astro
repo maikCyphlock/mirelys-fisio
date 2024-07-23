@@ -7,7 +7,7 @@ const redis =  new Redis({
 } )
 
 const saveViewCount = async () => {
-        const count = await redis.incr(`track:${country}`)
+        const count = await redis.incr('views:' + country)
         console.log(count)
 }
 await saveViewCount()
