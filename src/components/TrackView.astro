@@ -9,10 +9,9 @@ const redis =  new Redis({
 } )
 
 const saveViewCount = async () => {
-       if(ip && country){
-         await redis.set('ip:' + ip, country)
-       }
+     
        if(ip !== await redis.get('ip:' + ip)){
+        await redis.set('ip:' + ip, country)
         const count = await redis.incr('views:' + country)
        }
       
