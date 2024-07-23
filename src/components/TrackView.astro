@@ -7,14 +7,26 @@ const redis =  new Redis({
     url: import.meta.env.UPSTASH_REDIS_REST_URL,
     token: import.meta.env.UPSTASH_REDIS_REST_TOKEN
 } )
-
 const saveViewCount = async () => {
-     
-       if(ip !== await redis.get('ip:' + ip)){
-        await redis.set('ip:' + ip, country)
-        const count = await redis.incr('views:' + country)
-       }
-      
-}
-await saveViewCount()
+    // Crear la clave para la IP
+    const ipKey = 'ip:' + ip;
+
+    // Verificar si la IP ya está registrada en Redis
+    const existingIp = await redis.get(ipKey);
+
+    // Si la IP no está registrada
+    if (!existingIp) {
+        // Registrar la IP con su país correspondiente
+        await redis.set(ipKey, country);
+
+        // Incrementar el contador de vistas para el país
+        const count = await redis.incr('views:' + country);
+
+        // Puedes realizar alguna acción adicional con el nuevo contador de vistas (opcional)
+        console.log(`New view count for ${country}: ${count}`);
+    }
+};
+
+// Ejecutar la función para guardar el conteo de vistas
+await saveViewCount();
 ---
