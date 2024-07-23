@@ -21,7 +21,7 @@ const saveViewCount = async () => {
 
         // Incrementar el contador de vistas para el país
         const count = await redis.incr('views:' + country);
-
+        await redis.incr('AllViews');
         // Puedes realizar alguna acción adicional con el nuevo contador de vistas (opcional)
         console.log(`New view count for ${country}: ${count}`);
     }
